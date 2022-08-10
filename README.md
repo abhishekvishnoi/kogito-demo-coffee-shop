@@ -47,7 +47,7 @@ This Exmaple provides a docker compose template that starts all the required ser
 
 ### Run Example with PostgreSQL
 
-# How to Run With Postgresql
+### How to Run With Postgresql
 <details>
 We will try to run this Exmaple with Postgres 
 
@@ -146,6 +146,7 @@ To run the generated native executable, generated in `target/`, execute
 
 ### Run Example with Infinispan
 
+<details>
 #### Compile Coffee Shop example with profile infinispan
 
 First thing is to compile the example with the infinispan profile executing:
@@ -228,6 +229,7 @@ To run the generated native executable, generated in `target/`, execute
 ```sh
 ./target/./target/process-usertasks-quarkus-with-console-runner
 ```
+</details>
 
 ### Using Keycloak as Authentication Server
 
