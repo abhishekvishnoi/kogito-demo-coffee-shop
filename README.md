@@ -47,6 +47,8 @@ This Exmaple provides a docker compose template that starts all the required ser
 
 ### Run Example with PostgreSQL
 
+# How to Run With Postgresql
+<details>
 We will try to run this Exmaple with Postgres 
 
 #### Compile Hiring example with profile postgresql
@@ -139,6 +141,8 @@ To run the generated native executable, generated in `target/`, execute
 ```sh
 ./target/./target/process-usertasks-quarkus-with-console-runner
 ```
+</details>
+
 
 ### Run Example with Infinispan
 
