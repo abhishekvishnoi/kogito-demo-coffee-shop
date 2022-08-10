@@ -235,8 +235,11 @@ It will install the *Kogito Realm* that comes with a predefined set of users:
 |    admin      |   admin    | *admin*, *managers* |
 |    alice      |   alice    | *user*              |
 |    jdoe       |   jdoe     | *managers*          |
+|    abhishek   |  abhishek  | *user*              |
 
 Once Keycloak is started, you should be able to access your *Keycloak Server* at [localhost:8480/auth](http://localhost:8480/auth) with *admin* user.
+
+Add an Additional User named *abhishek* which is used for Placing Order and Making Payment
 
 ### Submit a request to start new Order
 
@@ -255,17 +258,19 @@ Once the service is up and running you can make use of the **Coffee Shop** appli
 
 In a Terminal you can execute this command to start a **Coffee Shop** process for the "Jon Snow" candidate:
 ```bash
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST http://localhost:8080/coffee_shop -d @- << EOF
-{
+curl -X 'POST' \
+  'http://localhost:8080/coffee_shop' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
   "orderPaid": true,
   "order": {
-    "item": "MilkShake",
+    "item": "Milkshake",
     "email": "abhishek@gmail.com",
     "customer": "Abhishek",
     "cardPayment": true
   }
-}
-EOF
+}'
 ```
 
 
