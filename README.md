@@ -2,70 +2,7 @@
 
 ## Description
 
-This Quickstart showcases a basic implementation of the **Hiring** process. 
-
-This quickstart project shows very typical user task orchestration, is based on a simple Hiring process 
-that drives a *Candidate* through different interviews until it gets hired.
-
-> **_NOTE:_** This example uses keycloak authentication to enable security only in the consoles and not in runtime.
-### The Candidate data model
-
-The *Hiring* example uses a *Candidate* POJO to represent the person that wants to get the job. You can find it in the *org.kie.kogito.hr* package.
-
-```java
-public class Candidate {
-
-    private String name; // Name of the candidate
-    private String email; // Email of the candidate
-    private Integer salary; // Expected salary
-    private String skills; // List of technical skills
-
-    public Candidate(String name, String email, Integer salary, String skills) {
-        this.name = name;
-        this.email = email;
-        this.salary = salary;
-        this.skills = skills;
-    }
-    
-    // Setters & getters...
-}
-```
-
-### The Business Logic
-
-The example process consists in two human tasks that will drive the candidate trough two interview with *HR* and *IT* departments represented by the *HR Interview* & *IT interview* User Tasks.
-
-<p align="center">
-    <img width=75%  src="docs/images/hiring.png">
-</p>
-
-#### Process data
-
-<p align="center"><img width=75%  src="docs/images/process-variables.png"></p>
-
-The process handles three _Process Variables_:
-
-* *candidate*: represents the candidate person that wants to get the job. It is an instance of *org.kie.kogito.hiring.Candidate*.
-* *hr_approval*: a boolean that determines that HR department approves the hiring.
-* *it_approval*: a boolean that determines that IT department approves the hiring.
-
-### The Hiring process
-
-Once it starts, the process will move into the *HR Interview task*, this task represents an interview with someone from the company HR department.
-
-The task will get the *candidate* as an input assignment and as an output it will generate an *approval* boolean that represents assesment of hiring or not hiring the *candidate*. It will be stored on the *hr_approval* process variable
-
-<p align="center">
-    <img width=65%  src="docs/images/hr-interview-assignments.png">
-    <br/><i>HR Interview assignments</i>
-</p>
-
-After completing the *HR Interview* the candidate moves to the *IT Interview* task with the company IT department. Ashe task will get the *candidate* as an input assignment and as an output it will generate an *approval* boolean that represents assesment of hiring or not hiring the *candidate*.
-
-<p align="center">
-    <img width=65%  src="docs/images/it-interview-assignments.png">
-    <br/><i>IT Interview assignments</i>
-</p>
+This Quickstart showcases a basic implementation of the **Coffee Shop** process. 
 
 
 The required *Kogito and Infrastructure Services* for this example are:
@@ -291,7 +228,7 @@ Once Keycloak is started, you should be able to access your *Keycloak Server* at
 
 ### Submit a request to start new hiring
 
-Once the service is up and running you can make use of the **Hiring** application by a sending request to `http://localhost:8080/hiring`  with following content:
+Once the service is up and running you can make use of the **Hiring** application by a sending request to `http://localhost:8080/coffee-shop`  with following content:
 ```json
 {   
     "candidate": {
@@ -317,76 +254,18 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST h
 EOF
 ```
 
-### Show active Hiring process instance at Kogito Management Console
+### Access Kogito Management Console
 
 To access the Kogito Management Console just open your browser and navigate to ``http://localhost:8280``. You'll be redirected to the *Keycloak* log in page.
 
-<p align="center">
-    <img width=75%  src="docs/images/keycloak-login.png">
-</p>
-
-Once there, log in using any of the users specified in the [Using Keycloak as Authentication Server](#using-keycloak-as-authentication-server)
-
-<p align="center">
-    <img width=75%  src="docs/images/MC_list1.png">
-</p>
 
 > **_NOTE:_**  For more information about how to work with Kogito Management Console, please refer to the [Kogito Documentation](https://docs.jboss.org/kogito/release/latest/html_single/#con-management-console_kogito-developing-process-services) page.
 
-Check the process instance details to see where is the execution path 
 
-<p align="center">
-    <img width=75%  src="docs/images/MC_details1.png">
-</p>
-
-### Execute HR Interview task at Kogito Task Console
+### Access Kogito Task Console
 
 To access the Kogito Task Console just open your browser and navigate to ``http://localhost:8380``. You'll be redirected to the *Keycloak* log in page.
 
-<p align="center">
-    <img width=75%  src="docs/images/keycloak-login.png">
-</p>
-
 Once there, log in with an *managers* user (for example *jdoe*) and you should be redirected to the user **Task Inbox**:
 
-<p align="center">
-    <img width=75%  src="docs/images/TC_list1.png">
-</p>
 
-> **_NOTE:_**  For more information about how to work with Kogito Task Console, please refer to the [Kogito Documentation](https://docs.jboss.org/kogito/release/latest/html_single/#con-task-console_kogito-developing-process-services) page.
-
-Access to HR Interview task and complete
-  
-<p align="center">
-    <img width=75%  src="docs/images/TC_HRInterview.png">
-</p>
-
-Check the process instance details at Kogito Management Console to see the execution path reflects the completed task
-
-<p align="center">
-    <img width=75%  src="docs/images/MC_details2.png">
-</p>
-
-
-### Execute IT Interview task
-
-Access to Task Console again and verify IT Interview is available  
-<p align="center">
-    <img width=75%  src="docs/images/TC_list2.png">
-</p>
-
-Access to IT Interview task  
-<p align="center">
-    <img width=75%  src="docs/images/TC_ITInterview.png">
-</p>
-
-And after complete the task, check the list of tasks show both completed tasks  
-<p align="center">
-    <img width=75%  src="docs/images/TC_list3.png">
-</p>
-
-Check the process instance details to verify the instance have been completed 
-
-<p align="center">
-    <img width=75%  src="docs/images/MC_details3.png">
-</p>
