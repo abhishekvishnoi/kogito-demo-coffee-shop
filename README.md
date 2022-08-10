@@ -2,19 +2,19 @@
 
 ## Description
 
-This Quickstart showcases a basic implementation of the **Coffee Shop** process. 
+This Exmaple showcases a basic implementation of the **Coffee Shop** process. 
 
 
 The required *Kogito and Infrastructure Services* for this example are:
 
-- Infinispan / Postgresql
-- Kafka
-- Kogito Data Index
-- Kogito Management Console
-- Kogito Task Console
-- Keycloak server
+        - Infinispan / Postgresql
+        - Kafka
+        - Kogito Data Index
+        - Kogito Management Console
+        - Kogito Task Console
+        - Keycloak server
 
-## Running the Quickstart
+## Running the Exmaple
 
 ### Prerequisites
 
@@ -29,13 +29,25 @@ And when using native image compilation, you will also need:
   - GraalVM native image needs as well native-image extension: https://www.graalvm.org/reference-manual/native-image/
   - Note that GraalVM native image compilation typically requires other packages (glibc-devel, zlib-devel and gcc) to be installed too, please refer to GraalVM installation documentation for more details.
 
+
+### Final Process diagram for Kogito-demo-coffee-shop
+
+This Exmaple aims at creating a workflow (Refer the following Diagram.)
+
+<p align="center"><img width=75% height=50% src="docs/images/coffee-shop-process.png"></p>
+
+
 ### Starting the Kogito and Infrastructure Services
 
-This quickstart provides a docker compose template that starts all the required services. This setup ensures that all services are connected with a default configuration.
+This Exmaple provides a docker compose template that starts all the required services. This setup ensures that all services are connected with a default configuration.
 
 <p align="center"><img width=75% height=50% src="docs/images/services.png"></p>
 
+
+
 ### Run Example with PostgreSQL
+
+We will try to run this Exmaple with Postgres 
 
 #### Compile Hiring example with profile postgresql
 
@@ -51,7 +63,7 @@ mvn clean install -Ppostgresql
 
 #### Start infrastructure services
 
-You should start all the services before you execute any of the **Hiring** example, to do that please execute:
+You should start all the services before you execute any of the **Coffee Shop** example, to do that please execute:
 
 For Linux and MacOS:
 
@@ -85,14 +97,14 @@ Once started you can simply stop all services by executing the ```docker-compose
 
 All created containers can be removed by executing the ```docker-compose -f docker-compose-postgresql.yml rm```.
 
-#### Run the Hiring example with PostgreSQL
+#### Run the Coffee Shop example with PostgreSQL
 
-##### Compile and Run Hiring example process in Local Dev Mode
+##### Compile and Run Coffee Shop example process in Local Dev Mode
 
-Once all the infrastructure services are ready, you can start the Hiring example by doing:
+Once all the infrastructure services are ready, you can start the Coffee Shop example by doing:
 
 - Open a Terminal
-- Go to the hiring example folder
+- Go to the Coffee Shop example folder
 - Start the example with the command
 
 ```bash
@@ -130,7 +142,7 @@ To run the generated native executable, generated in `target/`, execute
 
 ### Run Example with Infinispan
 
-#### Compile Hiring example with profile infinispan
+#### Compile Coffee Shop example with profile infinispan
 
 First thing is to compile the example with the infinispan profile executing:
 
@@ -143,7 +155,7 @@ mvn clean install -Pinfinispan
 ```
 #### Start infrastructure services
 
-You should start all the services before you execute any of the **Hiring** example, to do that please execute:
+You should start all the services before you execute any of the **Coffee Shop** example, to do that please execute:
 
 For Linux and MacOS:
 
@@ -170,14 +182,14 @@ Once started you can simply stop all services by executing the ```docker-compose
 
 All created containers can be removed by executing the ```docker-compose -f docker-compose-infinispan.yml rm```.
 
-#### Run the Hiring example with Infinispan
+#### Run the Coffee Shop example with Infinispan
 
-##### Compile and Run Hiring example process in Local Dev Mode
+##### Compile and Run Coffee Shop example process in Local Dev Mode
 
-Once all the infrastructure services are ready, you can start the Hiring example by doing:
+Once all the infrastructure services are ready, you can start the Coffee Shop example by doing:
 
 - Open a Terminal
-- Go to the hiring example folder
+- Go to the Coffee Shop example folder
 - Start the example with the command
 
 ```bash
@@ -215,7 +227,7 @@ To run the generated native executable, generated in `target/`, execute
 
 ### Using Keycloak as Authentication Server
 
-In this Quickstart we'll be using [Keycloak](https://www.keycloak.org/) as *Authentication Server*. It will be started as a part of the project *Infrastructure Services*, you can check the configuration on the project [docker-compose.yml](docker-compose/docker-compose.yml) in [docker-compose](docker-compose) folder.
+In this Exmaple we'll be using [Keycloak](https://www.keycloak.org/) as *Authentication Server*. It will be started as a part of the project *Infrastructure Services*, you can check the configuration on the project [docker-compose.yml](docker-compose/docker-compose.yml) in [docker-compose](docker-compose) folder.
 
 It will install the *Kogito Realm* that comes with a predefined set of users:
 | Login         | Password   | Roles               |
@@ -226,33 +238,37 @@ It will install the *Kogito Realm* that comes with a predefined set of users:
 
 Once Keycloak is started, you should be able to access your *Keycloak Server* at [localhost:8480/auth](http://localhost:8480/auth) with *admin* user.
 
-### Submit a request to start new hiring
+### Submit a request to start new Order
 
-Once the service is up and running you can make use of the **Hiring** application by a sending request to `http://localhost:8080/coffee-shop`  with following content:
+Once the service is up and running you can make use of the **Coffee Shop** application by a sending request to `http://localhost:8080/coffee-shop`  with following content:
 ```json
-{   
-    "candidate": {
-        "name": "Jon Snow",
-        "email": "jsnow@example.com",
-        "salary": 30000,
-        "skills": "Java, Kogito"
-    }
+{
+  "orderPaid": true,
+  "order": {
+    "item": "MilkShake",
+    "email": "abhishek@gmail.com",
+    "customer": "Abhishek",
+    "cardPayment": true
+  }
 }
 ```
 
-In a Terminal you can execute this command to start a **Hiring** process for the "Jon Snow" candidate:
+In a Terminal you can execute this command to start a **Coffee Shop** process for the "Jon Snow" candidate:
 ```bash
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST http://localhost:8080/hiring -d @- << EOF
-{   
-    "candidate": {
-        "name": "Jon Snow",
-        "email": "jsnow@example.com",
-        "salary": 30000,
-        "skills": "Java, Kogito"
-    }
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST http://localhost:8080/coffee_shop -d @- << EOF
+{
+  "orderPaid": true,
+  "order": {
+    "item": "MilkShake",
+    "email": "abhishek@gmail.com",
+    "customer": "Abhishek",
+    "cardPayment": true
+  }
 }
 EOF
 ```
+
+
 
 ### Access Kogito Management Console
 
