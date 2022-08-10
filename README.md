@@ -41,7 +41,7 @@ This Exmaple aims at creating a workflow (Refer the following Diagram.)
 
 This Exmaple provides a docker compose template that starts all the required services. This setup ensures that all services are connected with a default configuration.
 
-<p align="center"><img width=75% height=50% src="docs/images/services.png"></p>
+<p align="center"><img width=75% height=50% src="docs/images/infra-kogito.png"></p>
 
 
 
