@@ -1,4 +1,4 @@
-# Process user task orchestration: Hiring
+# Process user task orchestration: Coffee Shop
 
 ## Description
 
